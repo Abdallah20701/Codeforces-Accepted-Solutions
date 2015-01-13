@@ -2,6 +2,7 @@
 compiler: Microsoft Visual C++ 2010
 problem link: http://codeforces.com/problemset/problem/352/B
 solution link: http://codeforces.com/contest/352/submission/9422683
+solution manual link: http://codeforces.com/blog/entry/9070
 */
 
 #include <iostream>
