@@ -1,4 +1,8 @@
-//Microsoft Visual C++ 2010
+/*
+compiler: Microsoft Visual C++ 2010
+problem link: http://codeforces.com/problemset/problem/352/B
+solution link: http://codeforces.com/contest/352/submission/9422683
+*/
 
 #include <iostream>
 #include <map>
