@@ -1,0 +1,81 @@
+//Microsoft Visual C++ 2010
+
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main()
+{
+	int n, temp;
+	int counter[100001] = { 0 };
+	map<int, int> lastPosition, period;
+	map<int, bool> fail;
+	cin >> n;
+
+	for (int index= 0; index < n; index++)
+	{
+		cin >> temp;
+		if (counter[temp] == 0)
+		{
+			counter[temp]++;
+			lastPosition[temp] = index;
+			period[temp] = 0;
+			fail[temp] = false;
+		}
+		else if (counter[temp] == 1)
+		{
+			counter[temp]++;
+			period[temp] = index - lastPosition[temp];
+			lastPosition[temp] = index;
+		}
+		else if (counter[temp] == 2)
+		{
+			counter[temp]++;
+			if ((index - lastPosition[temp]) != period[temp])
+			{
+				fail[temp] = true;
+				continue;
+			}
+			period[temp] = index - lastPosition[temp];
+			lastPosition[temp] = index;
+		}
+		else
+		{
+			counter[temp]++;
+			if (fail[temp] == true)
+			{
+				continue;
+			}
+			else if ((index - lastPosition[temp]) != period[temp])
+			{
+				fail[temp] = true;
+				continue;
+			}
+			period[temp] = index - lastPosition[temp];
+			lastPosition[temp] = index;
+		}
+	}
+
+	temp = 0;
+	for (map<int, bool>::iterator it = fail.begin(); it != fail.end(); it++)
+	{
+		if (it->second == false)
+		{
+			temp++;
+		}
+	}
+
+	cout << temp << endl;
+	if (temp != 0)
+	{
+		for (map<int, int>::iterator it = period.begin(); it != period.end(); it++)
+		{
+			if (fail[it->first] == false)
+			{
+				cout << it->first << " " << it->second << endl;
+			}
+		}
+	}
+	
+	return 0;
+}
